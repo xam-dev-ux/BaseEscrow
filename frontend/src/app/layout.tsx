@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   creator: 'BaseEscrow',
   publisher: 'BaseEscrow',
   applicationName: 'BaseEscrow',
-  manifest: '/manifest.json',
   icons: {
     icon: [
       { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
@@ -50,18 +49,24 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   other: {
+    // Farcaster Frame v2 / Mini App metadata
     'fc:frame': 'vNext',
     'fc:frame:image': `${APP_URL}/og-image.png`,
-    'fc:frame:button:1': 'Open App',
-    'fc:frame:button:1:action': 'link',
+    'fc:frame:image:aspect_ratio': '1.91:1',
+    'fc:frame:button:1': 'Open BaseEscrow',
+    'fc:frame:button:1:action': 'launch_frame',
     'fc:frame:button:1:target': APP_URL,
+    'of:version': 'vNext',
+    'of:accepts:xmtp': '2024-02-01',
+    'of:image': `${APP_URL}/og-image.png`,
   },
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
+  userScalable: true,
   themeColor: '#0052FF',
 };
 
@@ -75,8 +80,17 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="fc:frame" content="vNext" />
-        <meta name="fc:frame:image" content={`${APP_URL}/og-image.png`} />
+        {/* Farcaster Mini App Frame tags */}
+        <meta property="fc:frame" content="vNext" />
+        <meta property="fc:frame:image" content={`${APP_URL}/og-image.png`} />
+        <meta property="fc:frame:image:aspect_ratio" content="1.91:1" />
+        <meta property="fc:frame:button:1" content="Open BaseEscrow" />
+        <meta property="fc:frame:button:1:action" content="launch_frame" />
+        <meta property="fc:frame:button:1:target" content={APP_URL} />
+        {/* Open Frames compatibility */}
+        <meta property="of:version" content="vNext" />
+        <meta property="of:image" content={`${APP_URL}/og-image.png`} />
+        <meta property="of:accepts:xmtp" content="2024-02-01" />
       </head>
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Providers>

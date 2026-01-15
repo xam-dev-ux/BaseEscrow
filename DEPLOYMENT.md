@@ -210,65 +210,104 @@ vercel --prod
 
 ## Base Mini App Configuration
 
-### Step 1: Generate App Icons
+### Step 1: Generate Account Association Signature
 
-Create icons in the following sizes and place them in `frontend/public/icons/`:
+The `farcaster.json` requires an account association to prove domain ownership.
+
+**Option A: Use Farcaster Developer Tools (Recommended)**
+1. Go to https://warpcast.com/~/developers/frames
+2. Create a new Mini App
+3. Add your domain
+4. Copy the generated `accountAssociation` object
+
+**Option B: Generate manually**
+```javascript
+// Use @farcaster/hub-web to sign the domain
+import { createAppKey } from '@farcaster/hub-web';
+
+const domain = 'baseescrow.app';
+// Sign with your Farcaster custody address
+```
+
+Update `frontend/public/.well-known/farcaster.json` with your signature:
+```json
+{
+  "accountAssociation": {
+    "header": "YOUR_HEADER",
+    "payload": "YOUR_PAYLOAD",
+    "signature": "YOUR_SIGNATURE"
+  }
+}
+```
+
+### Step 2: Generate App Icons
+
+Create a **1024x1024 PNG icon** (required for Mini Apps):
 
 | Size | Filename | Purpose |
 |------|----------|---------|
-| 72x72 | icon-72x72.png | Android |
-| 96x96 | icon-96x96.png | Android |
-| 128x128 | icon-128x128.png | Android |
-| 144x144 | icon-144x144.png | Android |
-| 152x152 | icon-152x152.png | iOS |
-| 180x180 | apple-touch-icon.png | iOS |
-| 192x192 | icon-192x192.png | PWA (required) |
-| 384x384 | icon-384x384.png | Android |
-| 512x512 | icon-512x512.png | PWA (required) |
+| 1024x1024 | icon-1024x1024.png | **Mini App icon (REQUIRED)** |
+| 512x512 | icon-512x512.png | PWA / Fallback |
+| 200x200 | splash.png | Splash screen loader |
 
-Recommended tool: Use the provided SVG icon as base and generate PNG versions.
+**Important**: Icon must be PNG, no transparent background recommended.
 
-### Step 2: Create Screenshots
+Use the provided SVG at `public/icons/icon.svg` as a template.
 
-Create app screenshots for the manifest:
+### Step 3: Create Screenshots
 
-| Size | Filename | Description |
-|------|----------|-------------|
-| 1170x2532 | dashboard.png | Dashboard view |
-| 1170x2532 | create.png | Create transaction |
-| 1170x2532 | transaction.png | Transaction detail |
+Create app screenshots (recommended 1284x2778 for iPhone):
+
+| Filename | Description |
+|----------|-------------|
+| dashboard.png | Dashboard view |
+| create.png | Create transaction |
+| transaction.png | Transaction detail |
 
 Place in `frontend/public/screenshots/`
 
-### Step 3: Create Open Graph Image
+### Step 4: Create Open Graph / Hero Image
 
-Create `frontend/public/og-image.png`:
-- Size: 1200x630 pixels
-- Include app name and key visuals
+Create these images in `frontend/public/`:
 
-### Step 4: Update Manifest URLs
+| File | Size | Purpose |
+|------|------|---------|
+| og-image.png | 1200x630 | Open Graph sharing |
+| hero-image.png | 1200x630 | Featured hero banner |
 
-Edit `frontend/public/manifest.json` and update all URLs to use your domain.
+### Step 5: Update farcaster.json URLs
 
-### Step 5: Verify Manifest Accessibility
+Edit `frontend/public/.well-known/farcaster.json`:
+
+1. Replace `baseescrow.app` with your actual domain
+2. Update all image URLs
+3. Add your account association signature
+
+### Step 6: Verify Manifest Accessibility
 
 After deployment, verify:
 
 ```bash
-# Check manifest is accessible
-curl https://your-domain.com/manifest.json
+# Check farcaster.json is accessible
+curl https://your-domain.com/.well-known/farcaster.json
 
 # Check icons are accessible
-curl -I https://your-domain.com/icons/icon-192x192.png
+curl -I https://your-domain.com/icons/icon-512x512.png
+
+# Validate JSON structure
+curl -s https://your-domain.com/.well-known/farcaster.json | jq .
 ```
 
-### Step 6: Test in Base Preview Tool
+### Step 7: Test in Base Preview Tool
 
-1. Go to Base Mini Apps Preview Tool
+1. Go to https://base.org/builders/miniapps/preview
 2. Enter your app URL
-3. Verify all metadata loads correctly
-4. Test wallet connection
-5. Test core flows
+3. Verify:
+   - Manifest loads correctly
+   - Account association is valid
+   - All images load
+   - App launches properly
+4. Test wallet connection and core flows
 
 ---
 
