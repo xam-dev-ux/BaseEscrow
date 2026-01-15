@@ -25,7 +25,7 @@ export function VotingPanel({ dispute, disputeId, onSuccess }: VotingPanelProps)
   const hasVoted = currentVote !== undefined && currentVote !== Vote.None;
 
   const handleVote = async () => {
-    if (!selectedVote || selectedVote === Vote.None) {
+    if (!selectedVote) {
       toast.error('Please select a vote');
       return;
     }
