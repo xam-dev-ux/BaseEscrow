@@ -59,6 +59,7 @@ export const metadata: Metadata = {
     'of:version': 'vNext',
     'of:accepts:xmtp': '2024-02-01',
     'of:image': `${APP_URL}/og-image.png`,
+    'base:app_id': '696941bc8b0e0e7315e2071f',
   },
 };
 
