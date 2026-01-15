@@ -37,7 +37,7 @@ export const metadata: Metadata = {
       {
         url: '/og-image.png',
         width: 1200,
-        height: 630,
+        height: 800,
         alt: 'BaseEscrow - Secure P2P Transactions',
       },
     ],
@@ -49,17 +49,32 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   other: {
-    // Farcaster Frame v2 / Mini App metadata
+    // Farcaster Mini App embed metadata (required for embeds)
+    'fc:miniapp': JSON.stringify({
+      version: 'next',
+      imageUrl: `${APP_URL}/og-image.png`,
+      button: {
+        title: 'Open BaseEscrow',
+        action: {
+          type: 'launch_frame',
+          url: APP_URL,
+          name: 'BaseEscrow',
+          splashImageUrl: `${APP_URL}/icons/splash-200x200.png`,
+          splashBackgroundColor: '#0A0B0D'
+        }
+      }
+    }),
+    // Legacy Farcaster Frame v2 metadata
     'fc:frame': 'vNext',
     'fc:frame:image': `${APP_URL}/og-image.png`,
-    'fc:frame:image:aspect_ratio': '1.91:1',
+    'fc:frame:image:aspect_ratio': '3:2',
     'fc:frame:button:1': 'Open BaseEscrow',
     'fc:frame:button:1:action': 'launch_frame',
     'fc:frame:button:1:target': APP_URL,
+    // Open Frames compatibility
     'of:version': 'vNext',
     'of:accepts:xmtp': '2024-02-01',
     'of:image': `${APP_URL}/og-image.png`,
-    'base:app_id': '696941bc8b0e0e7315e2071f',
   },
 };
 
@@ -81,17 +96,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Farcaster Mini App Frame tags */}
-        <meta property="fc:frame" content="vNext" />
-        <meta property="fc:frame:image" content={`${APP_URL}/og-image.png`} />
-        <meta property="fc:frame:image:aspect_ratio" content="1.91:1" />
-        <meta property="fc:frame:button:1" content="Open BaseEscrow" />
-        <meta property="fc:frame:button:1:action" content="launch_frame" />
-        <meta property="fc:frame:button:1:target" content={APP_URL} />
-        {/* Open Frames compatibility */}
-        <meta property="of:version" content="vNext" />
-        <meta property="of:image" content={`${APP_URL}/og-image.png`} />
-        <meta property="of:accepts:xmtp" content="2024-02-01" />
       </head>
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Providers>
