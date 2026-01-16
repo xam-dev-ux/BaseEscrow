@@ -4,7 +4,7 @@
     "payload": "eyJkb21haW4iOiJiYXNlLWVzY3Jvdy1maXZlLnZlcmNlbC5hcHAifQ",
     "signature": "QGYXgIv9vobKnvHhJDtoIc9fNdhePQ5O7CcyWjvj9w0tqzq0dIf3SQo8D2kDqDlCz61XPjbD8uXX+N67ANrpphs="
   },
-  "frame": {
+  "miniapp": {
     "version": "1",
     "name": "BaseEscrow",
     "iconUrl": "https://base-escrow-five.vercel.app/icons/icon-1024x1024.png",
@@ -13,21 +13,21 @@
     "buttonTitle": "Open App",
     "splashImageUrl": "https://base-escrow-five.vercel.app/icons/splash-200x200.png",
     "splashBackgroundColor": "#0A0B0D",
-    "webhookUrl": "https://base-escrow-five.vercel.app/api/webhook"
-  },
-  "primaryCategory": "finance",
-  "tags": ["escrow", "p2p", "defi", "marketplace", "payments"],
-  "subtitle": "Secure P2P Escrow on Base",
-  "description": "Decentralized escrow for secure peer-to-peer transactions with community arbitration. Buy and sell with confidence on Base.",
-  "screenshotUrls": [
-    "https://base-escrow-five.vercel.app/screenshots/dashboard.png",
-    "https://base-escrow-five.vercel.app/screenshots/create.png",
-    "https://base-escrow-five.vercel.app/screenshots/transaction.png"
-  ],
-  "heroImageUrl": "https://base-escrow-five.vercel.app/hero-image.png",
-  "tagline": "Secure P2P Transactions on Base",
-  "ogTitle": "BaseEscrow - Secure P2P Transactions",
-  "ogDescription": "Decentralized escrow with community arbitration on Base",
-  "ogImageUrl": "https://base-escrow-five.vercel.app/og-image.png",
-  "noindex": false
+    "webhookUrl": "https://base-escrow-five.vercel.app/api/webhook",
+    "primaryCategory": "finance",
+    "tags": ["escrow", "p2p", "defi", "marketplace", "payments"],
+    "subtitle": "Secure P2P Escrow on Base",
+    "description": "Decentralized escrow for secure peer-to-peer transactions with community arbitration. Buy and sell with confidence on Base.",
+    "screenshotUrls": [
+      "https://base-escrow-five.vercel.app/screenshots/dashboard.png",
+      "https://base-escrow-five.vercel.app/screenshots/create.png",
+      "https://base-escrow-five.vercel.app/screenshots/transaction.png"
+    ],
+    "heroImageUrl": "https://base-escrow-five.vercel.app/hero-image.png",
+    "tagline": "Secure P2P Transactions on Base",
+    "ogTitle": "BaseEscrow - Secure P2P Transactions",
+    "ogDescription": "Decentralized escrow with community arbitration on Base",
+    "ogImageUrl": "https://base-escrow-five.vercel.app/og-image.png",
+    "noindex": false
+  }
 }
