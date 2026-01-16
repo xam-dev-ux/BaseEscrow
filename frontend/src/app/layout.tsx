@@ -6,7 +6,7 @@ import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://baseescrow.app';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://base-escrow-five.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
